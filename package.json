@@ -1,0 +1,22 @@
+{
+  "name": "typescript_hw",
+  "version": "1.0.0",
+  "description": "TypeScript homework",
+  "scripts": {
+    "build": "tsc",
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0pashich/TypeScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0pashich/TypeScript/issues"
+  },
+  "homepage": "https://github.com/0pashich/TypeScript#readme",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
+}
