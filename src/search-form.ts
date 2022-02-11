@@ -4,6 +4,42 @@ function formatedDate(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
+export interface SearchFormData {
+  city: string
+  checkInDate: string
+  checkOutDate: string
+  maxPrice: string
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Place { }
+
+export function search(value: SearchFormData, callback) {
+  console.log(value);
+  setTimeout(() => {
+    if (Math.random() > 0.5) {
+      callback([]);
+    } else {
+      throw new Error('something went wrong')
+    }
+  }, 2000)
+}
+
+
+export function formHandler(callback, searchHandler) {
+  document.querySelector('form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const data: SearchFormData = {
+      city: event.target['city'].value,
+      checkInDate: event.target['check-in-date'].value,
+      checkOutDate: event.target['check-out-date'].value,
+      maxPrice: event.target['max-price'].value
+    }
+    callback(data, searchHandler);
+  });
+}
+
+
 export function renderSearchFormBlock(
   checkInDate: Date = new Date(Date.now() + 1000 * 60 * 60 * 24),
   checkOutDate: Date = new Date(+checkInDate + 1000 * 60 * 60 * 24 * 2)) {
