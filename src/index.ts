@@ -3,6 +3,7 @@ import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
 import { getUserData, setUserData, getFavoritesAmount, setFavoritesAmount } from './local-storage.js'
+import { getTodosByCount } from './todo-request.js'
 
 window.addEventListener('DOMContentLoaded', () => {
   setUserData('Test', '/img/avatar.png');
@@ -13,6 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderSearchFormBlock()
   renderSearchStubBlock()
   formHandler(search, (val) => console.log(val))
+  getTodosByCount(10)
   renderToast(
     { text: 'Это пример уведомления. Используйте его при необходимости', type: 'success' },
     { name: 'Понял', handler: () => { console.log('Уведомление закрыто') } }
