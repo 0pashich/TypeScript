@@ -1,6 +1,6 @@
 import { renderBlock } from './lib.js'
 
-function formatedDate(date: Date): string {
+function formattedDate(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
@@ -45,10 +45,10 @@ export function renderSearchFormBlock(
   checkOutDate: Date = new Date(+checkInDate + 1000 * 60 * 60 * 24 * 2)) {
 
   const today = new Date();
-  const formatedMinDate = formatedDate(today);
-  const formatedMaxDate = formatedDate(new Date(today.getFullYear(), today.getMonth() + 2, 0 + 1));
-  const formatedCheckInDate = formatedDate(checkInDate);
-  const formatedCheckOutDate = formatedDate(checkOutDate);
+  const formattedMinDate = formattedDate(today);
+  const formattedMaxDate = formattedDate(new Date(today.getFullYear(), today.getMonth() + 2, 0 + 1));
+  const formattedCheckInDate = formattedDate(checkInDate);
+  const formattedCheckOutDate = formattedDate(checkOutDate);
 
   renderBlock(
     'search-form-block',
@@ -69,11 +69,11 @@ export function renderSearchFormBlock(
         <div class="row">
           <div>
             <label for="check-in-date">Дата заезда</label>
-            <input id="check-in-date" type="date" value="${formatedCheckInDate}" min="${formatedMinDate}" max="${formatedMaxDate}" name="checkin" />
+            <input id="check-in-date" type="date" value="${formattedCheckInDate}" min="${formattedMinDate}" max="${formattedMaxDate}" name="checkin" />
           </div>
           <div>
             <label for="check-out-date">Дата выезда</label>
-            <input id="check-out-date" type="date" value="${formatedCheckOutDate}" min="${formatedMinDate}" max="${formatedMaxDate}" name="checkout" />
+            <input id="check-out-date" type="date" value="${formattedCheckOutDate}" min="${formattedMinDate}" max="${formattedMaxDate}" name="checkout" />
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>
