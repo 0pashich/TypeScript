@@ -27,11 +27,10 @@ window.addEventListener('DOMContentLoaded', () => {
   const circle = new MyCircle(testArea)
   const rectangle = new MyRectangle(testArea)
 
-  console.log(circle.coordinates)
-  console.log(circle.square())
-  console.log(rectangle.square())
+
   console.log(circle.move({ X: 100, Y: 100 }))
-  console.log(circle.coordinates)
+  console.log(circle)
+  console.log(rectangle)
 
 
 
