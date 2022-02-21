@@ -4,6 +4,7 @@ import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
 import { getUserData, setUserData, getFavoritesAmount, setFavoritesAmount } from './local-storage.js'
 import { getTodosByCount } from './todo-request.js'
+import { MyCircle, MyRectangle } from './MyGraphics.js'
 
 window.addEventListener('DOMContentLoaded', () => {
   setUserData('Test', '/img/avatar.png');
@@ -14,7 +15,27 @@ window.addEventListener('DOMContentLoaded', () => {
   renderSearchFormBlock()
   renderSearchStubBlock()
   formHandler(search, (val) => console.log(val))
-  getTodosByCount(10)
+  // getTodosByCount(10)
+
+
+
+  const testArea = {
+    topLeft: { X: 100, Y: 100 },
+    bottomRight: { X: 200, Y: 200 }
+  }
+
+  const circle = new MyCircle(testArea)
+  const rectangle = new MyRectangle(testArea)
+
+  console.log(circle.coordinates)
+  console.log(circle.square())
+  console.log(rectangle.square())
+  console.log(circle.move({ X: 100, Y: 100 }))
+  console.log(circle.coordinates)
+
+
+
+
   renderToast(
     { text: 'Это пример уведомления. Используйте его при необходимости', type: 'success' },
     { name: 'Понял', handler: () => { console.log('Уведомление закрыто') } }
