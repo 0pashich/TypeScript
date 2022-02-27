@@ -1,12 +1,27 @@
-export function renderBlock (elementId, html) {
+export function renderBlock(elementId: string, html: string) {
   const element = document.getElementById(elementId)
-  element.innerHtml = html
+  if (element != null) element.innerHTML = html
 }
 
-export function renderToast (message, action) {
+export interface Callback<R> {
+  (result?: R): void
+}
+
+export interface Message {
+  text: string
+  type: string
+}
+
+export interface Action {
+  name: string
+  handler: Callback<string>
+}
+
+
+export function renderToast(message: Message | null, action: Action | null) {
   let messageText = ''
-  
-  if (message != null) {
+
+  if (message != null && action != null) {
     messageText = `
       <div id="info-block" class="info-block ${message.type}">
         <p>${message.text}</p>
@@ -14,7 +29,7 @@ export function renderToast (message, action) {
       </div>
     `
   }
-  
+
   renderBlock(
     'toast-block',
     messageText
@@ -22,11 +37,11 @@ export function renderToast (message, action) {
 
   const button = document.getElementById('toast-main-action')
   if (button != null) {
-    button.onclick = function() {
+    button.onclick = function () {
       if (action != null && action.handler != null) {
         action.handler()
       }
-      renderToast(null)
+      renderToast(null, null)
     }
   }
 }
