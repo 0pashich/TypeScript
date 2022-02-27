@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderUserBlock(userData.username, userData.avatarUrl, favoritesAmount)
   renderSearchFormBlock()
   renderSearchStubBlock()
-  formHandler(search, (val) => console.log(val))
+  formHandler(search)
   renderToast(
     { text: 'Это пример уведомления. Используйте его при необходимости', type: 'success' },
     { name: 'Понял', handler: () => { console.log('Уведомление закрыто') } }

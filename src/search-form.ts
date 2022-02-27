@@ -1,4 +1,4 @@
-import { renderBlock } from './lib.js'
+import { renderBlock, Callback } from './lib.js'
 
 function formatedDate(date: Date): string {
   return date.toISOString().slice(0, 10);
@@ -11,14 +11,13 @@ export interface SearchFormData {
   maxPrice: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Place { }
 
-export function search(value: SearchFormData, callback) {
+export function search(value: SearchFormData | undefined) {
   console.log(value);
   setTimeout(() => {
     if (Math.random() > 0.5) {
-      callback([]);
+      // callback([]);
+      console.log([])
     } else {
       throw new Error('something went wrong')
     }
@@ -26,17 +25,27 @@ export function search(value: SearchFormData, callback) {
 }
 
 
-export function formHandler(callback, searchHandler) {
-  document.querySelector('form').addEventListener('submit', function (event) {
-    event.preventDefault();
-    const data: SearchFormData = {
-      city: event.target['city'].value,
-      checkInDate: event.target['check-in-date'].value,
-      checkOutDate: event.target['check-out-date'].value,
-      maxPrice: event.target['max-price'].value
-    }
-    callback(data, searchHandler);
-  });
+export function formHandler(callback: Callback<SearchFormData | undefined>) {
+  if (document.querySelector('form') != null) {
+    (document.querySelector('form') as HTMLElement).addEventListener('submit', function (event) {
+      event.preventDefault();
+      const data: SearchFormData = {
+        city: (document.getElementById('city') as HTMLInputElement).value,
+        checkInDate: (document.getElementById('check-in-date') as HTMLInputElement).value,
+        checkOutDate: (document.getElementById('check-out-date') as HTMLInputElement).value,
+        maxPrice: (document.getElementById('max-price') as HTMLInputElement).value,
+      }
+      // Вот здесь было трудно. Получить значения из event при noImplicitAny так и не получилось.\
+      // Если есть возможность покажите как использовать значения из event
+      // {
+      //   city: event.target['city'].value,
+      //   checkInDate: event.target['check-in-date'].value,
+      //   checkOutDate: event.target['check-out-date'].value,
+      //   maxPrice: event.target['max-price'].value
+      // }
+      callback(data);
+    });
+  }
 }
 
 
